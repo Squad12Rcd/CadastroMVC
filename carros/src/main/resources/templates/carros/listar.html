@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<title>Listagem de Carros</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-light bg-dark text-center">
+		<div class="container-fluid d-flex justify-content-center">
+			<img src="https://github.com/Stephmrqs/connectjobteste/blob/main/NavBar%20e%20Footer/5a28c52a4608b4.9337198515126213542869.png?raw=true"
+				style="height: 80px; width: 10%; margin-top: 10px;">
+		</div>
+	</nav>
+
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="fs-1 text-center mt-3">Listagem de Carros</p>
+			</div>
+		</div>
+		<div class="d-flex justify-content-end mb-3">
+			<a th:href="@{/carros/{id}/editar (id=${carro.id})}" class="btn btn-warning me-3">
+				Editar
+			</a>
+			<a th:href="@{/carros/{id}/excluir (id=${carro.id})}" class="btn btn-danger"
+				onclick="return confirm('Tem certeza que deseja excluir o cliente?');">
+				Excluir
+			</a>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 shadow-lg p-3 mb-5 bg-body-tertiary rounded  table-responsive-md">
+				<table class="table">
+					<thead>
+						<tr class="bg-dark text-white">
+							<th scope="col">#</th>
+							<th scope="col">ID</th>
+							<th scope="col">Marca</th>
+							<th scope="col">Modelo</th>
+							<th scope="col">Foto</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="carro : ${carros}">
+							<th scope="row" th:text="${carro.id}"></th>
+							<td>
+								<a th:text="${carro.marca}" th:href="@{/carros/{id}/detalhar (id=${carro.id})}"></a>
+							</td>
+							<td th:text="${carro.marca}"></td>
+							<td th:text="${carro.modelo}"></td>
+							<td>
+								<img alt="Image" class="img_prod" height="70px" width="50px"
+									th:src="|/carros/imagem/${carro.id}|" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 d-flex justify-content-center">
+				<a th:href="@{/carros/cadastrar}" class="btn btn-primary">Cadastrar Novo Carro </a>
+			</div>
+		</div>
+	</main>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
